@@ -1,0 +1,54 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<button (click)="getTaskFromService()">get all the tasks</button>
+
+<hr>
+
+<div *ngIf="hasError">
+  <p> --- oh no --- error ! -> {{error}}</p>
+</div>
+
+<form (submit)="OnSubmit()">
+  <input type="text" name="title" value="title" [(ngModel)]="newTask.title" /> title 
+  <input type="text" name="description" value="description" [(ngModel)]="newTask.description" /> description
+  <input type="submit" value="Create Task" />
+</form>
+
+<hr>
+
+<p *ngFor="let task of tasks">{{task.title}} -> {{task.description}} <button
+    (click)="OnButtonClickID_toGetOne(task._id)"> show me</button> 
+    <button (click)="DeleteThisOne(task._id)"> delete me
+    </button>
+
+  </p>
+
+<hr>
+<hr>
+
+
+<div *ngIf="!isHidden">  
+  <form (submit)="OnSubmitEdit()">
+    <input type="hidden" name="id" [(ngModel)] = "selectedTask._id">
+    <input type="text" name="title" value="title" [(ngModel)]="selectedTask.title" /> title 
+    <input type="text" name="description" value="description" [(ngModel)]="selectedTask.description" /> description
+    <input type="submit" value="edit the task" />
+  </form>
+</div>
+
+<router-outlet></router-outlet> 
