@@ -18,21 +18,22 @@
 <button (click)="getTaskFromService()">get all the tasks</button>
 
 <hr>
+  <p>this is where i want my component to go</p>
+  <app-my-first-component></app-my-first-component>
+<hr>
 
 <div *ngIf="hasError">
   <p> --- oh no --- error ! -> {{error}}</p>
 </div>
 
 <form (submit)="OnSubmit()">
-  <input type="text" name="title" value="title" [(ngModel)]="newTask.title" /> title 
+  <input type="text" name="title" value="title" [(ngModel)]="newTask.title" /> title
   <input type="text" name="description" value="description" [(ngModel)]="newTask.description" /> description
   <input type="submit" value="Create Task" />
 </form>
 
-<hr>
-
 <p *ngFor="let task of tasks">{{task.title}} -> {{task.description}} <button
-    (click)="OnButtonClickID_toGetOne(task._id)"> show me</button> 
+    (click)="ShowTask(task._id)"> show me</button>
     <button (click)="DeleteThisOne(task._id)"> delete me
     </button>
 
@@ -42,13 +43,17 @@
 <hr>
 
 
-<div *ngIf="!isHidden">  
+<div *ngIf="!isHidden">
+  <p>i just got revealed</p>
   <form (submit)="OnSubmitEdit()">
     <input type="hidden" name="id" [(ngModel)] = "selectedTask._id">
-    <input type="text" name="title" value="title" [(ngModel)]="selectedTask.title" /> title 
+    <input type="text" name="title" value="title" [(ngModel)]="selectedTask.title" /> title
     <input type="text" name="description" value="description" [(ngModel)]="selectedTask.description" /> description
     <input type="submit" value="edit the task" />
   </form>
 </div>
 
-<router-outlet></router-outlet> 
+
+<app-task *ngIf="selectedTask" [taskToShow]="selectedTask"></app-task>
+
+<router-outlet></router-outlet>

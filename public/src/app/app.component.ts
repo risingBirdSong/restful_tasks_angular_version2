@@ -1,5 +1,6 @@
-import { Component , OnInit } from '@angular/core';
+import { Component , OnInit, Input, Output } from '@angular/core';
 import { HttpService } from './http.service';
+import { TaskComponent } from './task/task.component';
 import {taskI} from './interfaces';
 
 @Component({
@@ -44,9 +45,8 @@ export class AppComponent implements OnInit {
     });
   }
 
-  // @ts-ignore
-  // tslint:disable-next-line: variable-name
-  OnButtonClickID_toGetOne(_id: number){
+
+  ShowTask(_id: number){
     this.isHidden = false;
     let observable = this._httpService.getOne(_id);
     observable.subscribe((data : taskI) => {

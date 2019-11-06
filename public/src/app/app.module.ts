@@ -8,11 +8,15 @@ import {HttpService} from './http.service';
 import {HttpClientModule } from '@angular/common/http';
 
 import {FormsModule } from '@angular/forms';
+import { MyFirstComponentComponent } from './my-first-component/my-first-component.component';
+import { TaskComponent } from './task/task.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MyFirstComponentComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
@@ -20,6 +24,7 @@ import {FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
+  // exports : [TaskComponent],
   providers: [HttpService],
   bootstrap: [AppComponent]
 })
